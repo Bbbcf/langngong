@@ -11,9 +11,38 @@
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Inter',sans-serif}
 body{
   min-height:100vh;
-  background:radial-gradient(circle at top,#111,#000);
+  background:
+    radial-gradient(circle at top,#1a0005,#000),
+    repeating-linear-gradient(
+      45deg,
+      rgba(255,215,0,.03) 0px,
+      rgba(255,215,0,.03) 2px,
+      transparent 2px,
+      transparent 6px
+    );
   color:#fff;
+  overflow-x:hidden;
 }
+
+/* 🎆 Pháo giấy */
+.confetti{
+  position:fixed;
+  top:-10px;
+  width:8px;
+  height:14px;
+  background:gold;
+  opacity:.8;
+  animation:fall linear infinite;
+}
+.confetti.red{background:#ff3c3c}
+.confetti.yellow{background:#ffd700}
+
+@keyframes fall{
+  to{
+    transform:translateY(110vh) rotate(360deg);
+  }
+}
+
 .container{
   max-width:1100px;
   margin:auto;
@@ -28,10 +57,11 @@ body{
   letter-spacing:2px;
 }
 .hero span{
-  color:#ff3c78;
+  color:#ffd700;
+  text-shadow:0 0 12px rgba(255,215,0,.6);
 }
 .hero p{
-  color:#aaa;
+  color:#ddd;
   margin-top:15px;
   font-size:1.2rem;
 }
@@ -40,44 +70,45 @@ body{
   display:inline-block;
   padding:18px 30px;
   border-radius:14px;
-  background:#111;
-  border:1px solid #222;
+  background:linear-gradient(135deg,#b30000,#ff3c3c);
+  border:1px solid #ff8080;
   font-size:1.3rem;
   cursor:pointer;
   transition:.2s;
 }
 .hero .ip:hover{
-  background:#ff3c78;
+  transform:scale(1.05);
 }
 #player-status{
   margin-top:15px;
   font-size:1.1rem;
-  color:#aaa;
 }
+
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
   gap:25px;
 }
 .card{
-  background:#0d0d0d;
-  border:1px solid #1a1a1a;
+  background:rgba(20,0,0,.8);
+  border:1px solid #331111;
   border-radius:20px;
   padding:25px;
   transition:.25s;
 }
 .card:hover{
   transform:translateY(-6px);
-  border-color:#ff3c78;
+  border-color:#ffd700;
 }
 .card h3{
   margin-bottom:12px;
-  color:#ff3c78;
+  color:#ffd700;
 }
 .card p{
-  color:#bbb;
+  color:#ddd;
   line-height:1.6;
 }
+
 .actions{
   margin-top:70px;
   display:flex;
@@ -89,75 +120,75 @@ body{
   padding:16px 30px;
   border-radius:50px;
   font-weight:600;
-  color:#fff;
-  background:#ff3c78;
+  color:#000;
+  background:linear-gradient(135deg,#ffd700,#ffb300);
   border:none;
   cursor:pointer;
   transition:.2s;
 }
 .btn.alt{
   background:#111;
-  border:1px solid #333;
+  color:#ffd700;
+  border:1px solid #ffd700;
 }
 .btn:hover{
   transform:scale(1.06);
 }
+
 footer{
   margin-top:80px;
   text-align:center;
-  color:#555;
+  color:#aaa;
   font-size:.9rem;
 }
 </style>
 </head>
 <body>
 
+<!-- confetti -->
+<script>
+for(let i=0;i<40;i++){
+  const c=document.createElement("div");
+  c.className="confetti "+(Math.random()>0.5?"red":"yellow");
+  c.style.left=Math.random()*100+"vw";
+  c.style.animationDuration=3+Math.random()*5+"s";
+  c.style.opacity=Math.random();
+  document.body.appendChild(c);
+}
+</script>
+
 <div class="container">
 
   <div class="hero">
-    <h1>LÀNG <span>NGỌNG</span></h1>
-    <p>Server Minecraft cộng đồng • Chơi vui • Không toxic</p>
+    <h1>LÀNG <span>NGỌNG</span> 🧧</h1>
+    <p>Server Minecraft cộng đồng • Vui vẻ • Đón Tết cùng nhau</p>
 
     <div class="ip" onclick="navigator.clipboard.writeText('play.axolotlmc.site:25005')">
       🎮 play.axolotlmc.site:25005
     </div>
 
-    <div id="player-status">
-      ⏳ Đang lấy trạng thái server...
-    </div>
+    <div id="player-status">⏳ Đang lấy trạng thái server...</div>
   </div>
 
   <div class="grid">
     <div class="card">
-      <h3>🌍 Sinh tồn</h3>
-      <p>
-        Survival thuần, không pay to win,
-        trải nghiệm Minecraft đúng nghĩa.
-      </p>
+      <h3>🌸 Sinh tồn</h3>
+      <p>Survival thuần, chơi lâu dài, không pay to win.</p>
     </div>
 
     <div class="card">
-      <h3>👥 Cộng đồng</h3>
-      <p>
-        Anh em vui vẻ, nói chuyện ngọng
-        nhưng không ai toxic.
-      </p>
+      <h3>🧧 Cộng đồng</h3>
+      <p>Vui vẻ – thân thiện – Tết không toxic.</p>
     </div>
 
     <div class="card">
-      <h3>⚔️ Event</h3>
-      <p>
-        Event đều đặn, phần thưởng công bằng,
-        chơi là có vui.
-      </p>
+      <h3>🎇 Event Tết</h3>
+      <p>Event đặc biệt, quà xuân, lì xì ingame.</p>
     </div>
 
     <div class="card">
       <h3>🛡️ Anti-Hack</h3>
-      <p>
-        Bảo vệ server nghiêm ngặt,
-        chơi sạch – chơi bền.
-      </p>
+      <p>Chơi sạch để năm mới chơi dài.</p>
     </div>
   </div>
 
@@ -165,44 +196,41 @@ footer{
     <button class="btn" onclick="navigator.clipboard.writeText('play.axolotlmc.site:25005')">
       🚀 Vào server
     </button>
-
     <button class="btn alt" onclick="window.open('https://discord.gg/yupujqzx','_blank')">
       💬 Discord
     </button>
   </div>
 
   <footer>
-    © 2025 Làng Ngọng Server
+    © 2025 Làng Ngọng Server • Chúc mừng năm mới 🐉
   </footer>
 
 </div>
 
 <script>
-const serverIP = "play.axolotlmc.site";
-const serverPort = "25005";
+const serverIP="play.axolotlmc.site";
+const serverPort="25005";
 
 async function fetchPlayerCount(){
   try{
-    const res = await fetch(`https://api.mcsrvstat.us/2/${serverIP}:${serverPort}`);
-    const data = await res.json();
-    const el = document.getElementById("player-status");
+    const res=await fetch(`https://api.mcsrvstat.us/2/${serverIP}:${serverPort}`);
+    const data=await res.json();
+    const el=document.getElementById("player-status");
 
     if(!data.online){
-      el.innerHTML = "🔴 Server hiện đang offline";
-      el.style.color = "#ff5555";
+      el.innerHTML="🔴 Server offline";
+      el.style.color="#ff5555";
       return;
     }
 
-    el.innerHTML = `🟢 Online: <b>${data.players.online}</b> / ${data.players.max} người chơi`;
-    el.style.color = "#55ff99";
+    el.innerHTML=`🟢 Online: <b>${data.players.online}</b> / ${data.players.max} người chơi`;
+    el.style.color="#55ff99";
   }catch{
-    document.getElementById("player-status").innerText =
-      "⚠️ Không lấy được dữ liệu server";
+    document.getElementById("player-status").innerText="⚠️ Không lấy được dữ liệu server";
   }
 }
-
 fetchPlayerCount();
-setInterval(fetchPlayerCount, 30000);
+setInterval(fetchPlayerCount,30000);
 </script>
 
 </body>
